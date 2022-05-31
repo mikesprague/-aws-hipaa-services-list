@@ -1,0 +1,77 @@
+{
+  "name": "aws-hipaa-services-list",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "description": "Script that collects the current list of HIPAA eligible services at AWS",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node --trace-warnings ./src/index.js",
+    "debug": "cross-env NODE_ENV=development node --trace-warnings --inspect=0.0.0.0:9229 --debug ./src/index.js",
+    "start": "cross-env NODE_ENV=production node ./src/index.js",
+    "test": "echo \"No tests yet...\""
+  },
+  "author": {
+    "name": "Michael Sprague",
+    "email": "mikesprague@gmail.com"
+  },
+  "repository": {
+    "url": "https://github.com/mikesprague/aws-hipaa-services-list"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": ">= 8.x"
+  },
+  "dependencies": {
+    "axios": "0.27.2",
+    "cheerio": "1.0.0-rc.11",
+    "cross-env": "7.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "7.18.2",
+    "@babel/eslint-parser": "7.18.2",
+    "eslint": "8.16.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "prettier": "2.6.2",
+    "prettier-eslint": "15.0.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "commonjs": false,
+      "es6": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "import",
+      "prettier"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser",
+      "ecmaVersion": 11,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "impliedStrict": true,
+        "modules": true
+      }
+    },
+    "ignorePatterns": [
+      "**/.history/*",
+      "**/node_modules/*"
+    ],
+    "rules": {}
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "semi": true,
+    "tabWidth": 2
+  }
+}

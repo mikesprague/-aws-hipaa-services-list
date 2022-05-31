@@ -1,0 +1,50 @@
+name: AWS HIPAA Services List
+
+on:
+  # run daily
+  schedule:
+    - cron: "0 12 * * *"
+  # allow manual runs from GH
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "18.x"
+  DISPLAY_NAME: "AWS HIPAA Services List"
+  OUTPUT_FILE_DIR: "docs/"
+  FILE_TO_ATTACH: "hipaa-services-list.json"
+  NODE_ENV: production
+
+jobs:
+  get-aws-hipaa-services:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 👷  Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: 🏗️  Setup Node.js ${{ env.NODE_VERSION }} environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          check-latest: true
+
+      - name: ⬆️  Update npm and install dependencies
+        run: npm i -g npm --silent && npm ci --omit=dev --silent
+
+      - name: 🏃‍♂️  Run script to create HIPAA services list files
+        run: npm start
+
+      - name: 🗄️  Add updated output files to repo and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git status
+          git add ${{ env.OUTPUT_FILE_DIR }}
+          git commit -s -m ":recycle: Update output files"
+          git push origin main
+
+      - name: 📎  Attach HIPAA services list JSON file to workflow run
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.FILE_TO_ATTACH }}
+          path: ${{ env.OUTPUT_FILE_DIR }}${{ env.FILE_TO_ATTACH }}
+          retention-days: 30
