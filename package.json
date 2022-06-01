@@ -19,10 +19,11 @@
     "url": "https://github.com/CU-CommunityApps/ct-aws-hipaa-services-for-confluence"
   },
   "engines": {
-    "node": "16.x",
+    "node": ">= 16.x",
     "npm": ">= 8.x"
   },
   "dependencies": {
+    "@actions/core": "1.8.2",
     "axios": "0.27.2",
     "cheerio": "1.0.0-rc.11",
     "cross-env": "7.0.3"
