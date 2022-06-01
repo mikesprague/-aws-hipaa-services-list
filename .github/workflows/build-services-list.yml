@@ -49,3 +49,15 @@ jobs:
           name: ${{ env.FILE_TO_ATTACH }}
           path: ${{ env.OUTPUT_FILE_DIR }}${{ env.FILE_TO_ATTACH }}
           retention-days: 30
+
+      - name: ⛔  Failure Notification
+        if: ${{ failure() }}
+        uses: mikesprague/teams-incoming-webhook-action@v1
+        with:
+          github-token: ${{ github.token }}
+          webhook-url: ${{ secrets.TEAMS_NOTIFICATION_WEBHOOK_URL }}
+          title: Workflow Failure - ${{ env.DISPLAY_NAME }}
+          message: |
+            **The last ${{ env.DISPLAY_NAME }} workflow run failed**
+            Run logs: [${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}](${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}})
+          color: failure
