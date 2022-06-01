@@ -92,12 +92,13 @@ const require = createRequire(import.meta.url);
     const htmlFileName = `${config.outputDir}${config.filename}.html`;
     await fs.writeFileSync(htmlFileName, htmlToOutput);
     console.log(`HTML file written: ${htmlFileName}`);
+    
+    // set env var that workflow can use for conditional processing
+    core.exportVariable('HAS_UPDATES', true);
   } else {
     // output to run logs
     console.log('No updates to services page, nothing to process');
   }
-  // set env var that workflow can use for conditional processing
-  core.exportVariable('HAS_UPDATES', true);
 
   // output execution time
   const debugEnd = hrtime(debugStart);
