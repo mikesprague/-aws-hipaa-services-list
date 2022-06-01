@@ -33,6 +33,7 @@ jobs:
         run: npm start
 
       - name: 🗄️  Add updated output files to repo and push changes
+        if: ${{ env.HAS_UPDATES }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -42,6 +43,7 @@ jobs:
           git push origin main
 
       - name: 📎  Attach HIPAA services list JSON file to workflow run
+        if: ${{ env.HAS_UPDATES }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.FILE_TO_ATTACH }}
