@@ -1,5 +1,5 @@
 {
-  "name": "aws-hipaa-services-list",
+  "name": "ct-aws-hipaa-services-for-confluence",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -13,10 +13,10 @@
   },
   "author": {
     "name": "Michael Sprague",
-    "email": "mikesprague@gmail.com"
+    "email": "ms388@cornell.edu"
   },
   "repository": {
-    "url": "https://github.com/mikesprague/aws-hipaa-services-list"
+    "url": "https://github.com/CU-CommunityApps/ct-aws-hipaa-services-for-confluence"
   },
   "engines": {
     "node": "16.x",

@@ -1,4 +1,4 @@
-name: AWS HIPAA Services List
+name: Build AWS HIPAA Services List
 
 on:
   # run daily
@@ -12,10 +12,9 @@ env:
   DISPLAY_NAME: "AWS HIPAA Services List"
   OUTPUT_FILE_DIR: "docs/"
   FILE_TO_ATTACH: "hipaa-services-list.json"
-  NODE_ENV: production
 
 jobs:
-  get-aws-hipaa-services:
+  build-aws-hipaa-services-list:
     runs-on: ubuntu-latest
     steps:
       - name: 👷  Checkout Repo
